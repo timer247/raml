@@ -1,0 +1,85 @@
+#%RAML 1.0
+baseUri: https://anypoint.mulesoft.com/mocking/api/v1/links/b480cd24-6eb4-4691-aaec-63d95f30933f/ # 
+title: online-shopping
+
+/users:
+  post:
+    description: 
+    body:
+      application/json:
+        example: 
+          output: {username: dirar, email: dirarmule@icraft.com}
+    responses:
+      200:
+         body:
+           application/json:
+              example:
+                output: {uid: 1010}
+/products:
+  get:
+    description: Retrieve available Products 
+    responses:
+       200:
+         body:
+           application/json:
+              examples:  !include Examples/productsExample.raml
+  /{ID}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include Examples/productByIdExample.raml
+/catagories:
+  get:
+    description: To retrieve the catagories
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+                  {categoryid: 01, name: Electronic}
+  /{id}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+                 example: { categoryid: 10, name: labtop}
+/order:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include Examples/ordersExample.raml
+            
+  /{id}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include Examples/ordersExample.raml
+                
+  post:
+    body:
+      application/json:
+        examples: 
+          products: 
+              {productId: 303,
+              quantity: 1000}
+          uid: 04
+    responses:
+      201:
+        body:
+          application/json:
+            example: !include Examples/orderByIdExample.raml
+             
+  
+      
+
+
+
+          
+      
